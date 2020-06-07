@@ -1,0 +1,100 @@
+{{extend './common/layout.html'}}
+{{block 'title'}}
+ <title>用户管理页面</title>
+{{/block}}
+{{block 'main'}}
+    <!-- 内容开始 -->
+    <div class="article">
+      
+      <table class="table" cellpadding="0" cellspacing="0">
+        <thead>
+          <th>一共{{count}}位用户</th>
+          <th colspan="4"></th>
+          <th class="add" >
+           <span class="iconfont icon-tianjia"> <a href="/admin/user-add">添加用户</a></span>
+          </th>
+        </thead>
+      	<thead>
+      		<th>ID</th>
+      		<th>用户名</th>
+      		<th>邮箱</th>
+      		<th>角色</th>
+      		<th>状态</th>
+          <th>操作</th>
+      	</thead>
+      	<tbody>
+      		{{each users.records}}
+          <tr>
+            <td>{{@$value._id}}</td>
+            <td>{{$value.username}}</td>
+            <td>{{$value.email}}</td>
+            <td>{{$value.role=='admin'?'超级管理员':'普通用户'}}</td>
+            <td>{{$value.state==0?'启用':'禁用'}}</td>
+            <td>
+              <span class="iconfont icon-bianji"><a href="/admin/user-edit?id={{@$value._id}}">编辑</a></span>
+              <span class="iconfont icon-shanchu" ><a class="deleteId"data-id={{@$value._id}}>删除</a></span>
+            </td>
+          </tr>
+          {{/each}}
+      	</tbody>
+      </table>
+
+      <!-- 分页开始 -->
+      <ul class="pagination pag A">
+      	<li style="display: {{users.page<=1?'none':'block'}}">
+      		<a href="/admin/user?page={{users.page-1}}">
+      			<span>&laquo;</span>
+      		</a>
+      	</li>
+      	{{each users.display}}
+        <li>
+          <a href="/admin/user?page={{$value}}">{{$value}}</a>
+        </li>
+        {{/each}}
+      	<li  style="display: {{users.page>=users.pages?'none':'block'}}">
+      		<a href="/admin/user?page={{users.page-0+1}}">
+      			<span>&raquo;</span>
+      		</a>
+      	</li>
+      </ul>
+      <!-- 分页结束 -->
+    </div>
+    <!-- 内容结束 -->
+    <!-- 弹窗 -->
+    <div class="deleted-box">
+        <div class="fork-btn">
+              <span id="forkBtn" class="iconfont icon-icon-"></span>
+        </div>
+        <p>您确定删除这个用户吗?</p>
+         <form action="/admin/user-delete" method="POST">
+           <input type="hidde" name="id" class="deleteUserId">
+           <button type="submit">确认</button>
+         </form>
+           
+    </div>
+    <!-- 弹窗结束 -->
+{{/block}}
+
+{{block 'script'}}
+ <script type="text/javascript">
+    // window.onload = function(){
+    var deletedBox = document.querySelector('.deleted-box')
+     var Btn =document.querySelector('#forkBtn')
+      var deleteBTn = document.querySelectorAll('.deleteId')
+      
+      for(let i=0; i<deleteBTn.length;i++){
+           deleteBTn[i].index = i
+           deleteBTn[i].addEventListener('click',function(){           
+            deletedBox.classList.remove('fadeFork')
+            deletedBox.classList.add("showFork")
+            var id =  $(this).attr('data-id')
+            $('.deleteUserId').attr('value',id)
+       })
+      }
+     Btn.addEventListener('click',function(){
+       deletedBox.classList.add("fadeFork")
+       deletedBox.classList.remove("showFork")
+     })
+
+ </script>
+{{/block}}

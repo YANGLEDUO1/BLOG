@@ -1,0 +1,27 @@
+ <!-- 侧边栏开始 -->
+    <aside class="aside">
+    	 <ul>
+    	 	<li>
+				 {{if userInfo.role=='admin'}}
+				     <span class="iconfont icon-company-fill">
+				    	<a href="/admin/article">文章管理</a>
+				     </span>
+				 {{else}}
+				     <span class="iconfont icon-company-fill">
+				    	<a href="/admin/article?id={{@userInfo._id}}">文章管理</a>
+				     </span> 
+				 {{/if}}
+    	 		
+    	 	</li>
+    	 	<li style="display: {{userInfo && userInfo.role=='admin'?'flex':'none'}}">
+    	 		<span class="iconfont icon-yonghu">
+					<a href="/admin/user">用户管理</a>
+				 </span>
+    	 		
+    	 	</li>
+    	 	<!-- <li>
+    	 		3
+    	 	</li> -->
+    	 </ul>
+    </aside>
+    <!-- 侧边栏结束 -->

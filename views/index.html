@@ -1,0 +1,48 @@
+{{extend './common/indexlayout.html'}}
+
+{{block 'main'}}
+  <div class="article-box2">
+   <!-- 内容开始   -->
+   <div class="article-index">
+    {{each article.records}}
+       <div class="lf">
+           <a href="/home/article-intro?id={{@$value._id}}">
+             <img src="{{$value.cover}}">
+           </a>
+          <div class="intro">
+               <a href="/home/article-intro?id={{@$value._id}}">
+                 <h3>{{$value.title}}</h3>
+               </a>
+               <h4>{{$value.author.username}}|{{dateFormat($value.publishDate,'yyyy-mm-dd')}}</h4>
+               <a href="/home/article-intro?id={{@$value._id}}">
+                 <p>{{@$value.content.trim().substr(0,50)+'...'}}</p>
+               </a>
+          </div>
+       </div>
+    {{/each}}
+     <div class="pagination-ul">
+     <!-- 分页开始 -->
+    <ul class="pagination-index A pag">
+      <li style="display: {{article.page-1<1?'none':'block'}}">
+        <a href="/home/index?page={{article.page-1}}">
+          <span>&laquo;</span>
+        </a>
+      </li>
+      {{each article.display}}
+      <li>
+        <a href="/home/index?page={{$value}}">{{$value}}</a>
+      </li>  
+      {{/each}}
+      <li style="display: {{article.page-0+1>article.pages?'none':'block'}}">
+        <a href="/home/index?page={{article.page-0+1}}">
+          <span>&raquo;</span>
+        </a>
+      </li>
+    </ul>
+    <!-- 分页结束 -->
+   </div>
+  </div>
+  </div>
+  
+    <!-- 内容结束 -->
+{{/block}}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="/public/js/jq.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/iconfont.css">
+</head>
+
+<body>
+    <div class="show-login-btn"><i class="iconfont icon-tuichu">登录</i></div>
+     
+    <div class="login-box">
+        <div class="hide-login-btn"><i class="iconfont icon-icon-"></i></div>
+        <form class="login-form" action="/admin/login" method="post">
+             {{if ErrorMessage}}
+             <div class="showcatch">
+                 <p>{{ErrorMessage}}</p>
+             </div>
+            {{/if}}
+            <h1>欢迎</h1>
+            <input class="txtb" type="email" name="email" placeholder="邮箱">
+            <input class="txtb" type="password" name="password" placeholder="密码">
+            <input class="login-btn" type="submit" name="" value="登录">
+        </form>
+    </div>
+</body>
+<script type="text/javascript">
+    $(".show-login-btn").on("click", function() {
+        $(".login-box").toggleClass("showed");
+    });
+    $(".hide-login-btn").on("click", function() {
+        $(".login-box").toggleClass("showed");
+    });
+     
+     function serializeToJson(form){
+        var result = {}
+        var formdata = $(form).serializeArray()
+        formdata.forEach(function(item){
+            result[item.name] = item.value
+        })
+        return result
+     }
+     //表单
+     $('.login-form').on('submit',function(e){
+       
+       
+       var result = serializeToJson($(this))
+       if (result.email.trim().length==0) {
+          alert('请输入邮箱')
+          return false
+       }
+       if (result.password.trim().length==0) {
+        alert('请输入密码')
+        return false
+       }
+       console.log(result)
+     })
+</script>
+
+</html>

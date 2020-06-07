@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="icon" href="../../public/image/24.png">
+    <meta charset="utf-8">
+    <title>博客首页</title>
+    {{block 'link'}}{{/block}}
+</head>
+
+<body>
+    {{include './indexheader.html'}}
+    {{include './indexaside.html'}}
+    {{block 'main'}}
+    {{/block}}
+</body>
+<script src="/public/js/jq.js"></script>
+<script src="/public/js/base.js"></script>
+{{block 'js'}}
+
+{{/block}}
+</html>

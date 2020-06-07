@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{block 'title'}}{{/block}}
+  <link rel="icon" href="../../public/image/24.png">
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="icon" type="text/css" href="/public/image/24.png">
+
+	<link rel="stylesheet" type="text/css" href="/public/css/base.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/iconfont.css">
+  
+    {{block 'link'}}{{/block}}
+</head>
+<body>
+  {{include './heade.html'}}
+  {{include './aside.html'}}
+  {{block 'main'}}
+  
+  {{/block}}
+</body>
+<script src="/public/js/jq.js"></script>
+<script src="/public/js/common.js"></script>
+<script type="text/javascript" src="/public/lib/ckeditor5/ckeditor.js"></script>
+<script type="text/javascript" src="/public/js/base.js"></script>
+{{block 'script'}}{{/block}}
+</html>

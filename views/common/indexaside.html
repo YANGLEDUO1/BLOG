@@ -1,0 +1,17 @@
+ <!-- 侧边栏开始 -->
+    <aside class="aside">
+    	 <ul>
+    	 	<li>
+    	 		<span class="iconfont icon-company-fill"></span>
+    	 		<a href="/admin/article?id={{@userInfo._id}}">文章管理</a>
+    	 	</li>
+    	 	<li style="display: {{userInfo && userInfo.role=='admin'?'flex':'none'}}">
+    	 		<span class="iconfont icon-yonghu"></span>
+    	 		<a href="/admin/user">用户管理</a>
+    	 	</li>
+    	 	<!-- <li>
+    	 		3
+    	 	</li> -->
+    	 </ul>
+    </aside>
+    <!-- 侧边栏结束 -->
