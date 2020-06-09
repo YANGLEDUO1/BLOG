@@ -246,7 +246,7 @@ input::-webkit-input-placeholder{
     justify-content: center;
     color: white;
 }
-.aside>ul>li>a{
+.aside>ul>li>span>a{
 	text-decoration: none;
 	color: white;
 }
